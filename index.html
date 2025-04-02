@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Página com Vídeo de Fundo Reduzido</title>
+  <title>Vídeo de Fundo Reduzido</title>
   <style>
     /* Reset básico */
     * {
@@ -15,14 +15,17 @@
       height: 100%;
       background-color: #111;
       font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    /* Container do vídeo com tamanho ainda menor */
+    /* Container do vídeo com tamanho reduzido (25% da viewport) */
     .video-bg-container {
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 50vw;   /* 50% da largura da viewport */
-      height: 50vh;  /* 50% da altura da viewport */
+      width: 25vw;   /* 25% da largura da viewport */
+      height: 25vh;  /* 25% da altura da viewport */
       transform: translate(-50%, -50%);
       overflow: hidden;
       z-index: -1;
@@ -33,25 +36,19 @@
       height: 100%;
       object-fit: cover;
     }
-    /* Conteúdo da página centralizado sobre o vídeo */
+    /* Conteúdo da página (opcional) */
     .content {
       position: relative;
       z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
       color: #fff;
       text-align: center;
-      padding: 20px;
     }
   </style>
 </head>
 <body>
   <!-- Container com o vídeo reduzido e centralizado -->
   <div class="video-bg-container">
-    <video autoplay muted loop>
+    <video id="bgVideo" autoplay muted>
       <source src="video-fundo.mp4" type="video/mp4">
       Seu navegador não suporta o elemento de vídeo.
     </video>
@@ -62,6 +59,17 @@
     <h1>Bem-vindo ao Meu Site</h1>
     <p>Conteúdo sobreposto ao vídeo de fundo.</p>
   </div>
+  
+  <script>
+    // Quando o vídeo terminar, o evento "ended" é disparado.
+    // Nesse momento, definimos o currentTime para o final (menos um pequeno ajuste)
+    // e pausamos o vídeo para congelar o último frame.
+    const bgVideo = document.getElementById('bgVideo');
+    bgVideo.addEventListener('ended', function() {
+      bgVideo.currentTime = bgVideo.duration - 0.1;
+      bgVideo.pause();
+    });
+  </script>
 </body>
 </html>
 
