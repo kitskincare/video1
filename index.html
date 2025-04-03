@@ -19,27 +19,27 @@
       align-items: center;
       font-family: sans-serif;
     }
-    /* Container do vídeo agora com 27,5% da viewport */
+    /* Container do vídeo */
     .video-bg-container {
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 27.5vw;   /* 27,5% da largura da viewport */
-      height: 27.5vh;  /* 27,5% da altura da viewport */
+      width: 27.5vw;
+      height: 27.5vh;
       transform: translate(-50%, -50%);
       overflow: hidden;
       z-index: -1;
     }
-    /* O vídeo ocupa todo o container e mantém o aspecto */
+    /* Estilo do vídeo sem cortes */
     .video-bg-container video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;  /* Exibe o vídeo completo */
+      background-color: #000; /* Fundo para eventuais barras */
     }
   </style>
 </head>
 <body>
-  <!-- Container com o vídeo aumentado e centralizado -->
   <div class="video-bg-container">
     <video id="bgVideo" autoplay muted>
       <source src="video-fundo.mp4" type="video/mp4">
@@ -48,7 +48,6 @@
   </div>
   
   <script>
-    // Quando o vídeo terminar, congela no último frame
     const bgVideo = document.getElementById('bgVideo');
     bgVideo.addEventListener('ended', function() {
       bgVideo.currentTime = bgVideo.duration - 0.1;
@@ -57,5 +56,6 @@
   </script>
 </body>
 </html>
+
 
 
