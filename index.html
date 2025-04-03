@@ -2,8 +2,8 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vídeo de Fundo Reduzido</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vídeo de Fundo Adaptável</title>
   <style>
     /* Reset básico */
     * {
@@ -14,28 +14,35 @@
     html, body {
       height: 100%;
       background-color: #111;
+      font-family: sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: sans-serif;
     }
-    /* Container do vídeo */
+    /* Container do vídeo para telas maiores (desktop) */
     .video-bg-container {
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 40vw;
-      height: 40vh;
+      width: 27.5vw;   /* 27,5% da largura da viewport */
+      height: 27.5vh;  /* 27,5% da altura da viewport */
       transform: translate(-50%, -50%);
       overflow: hidden;
       z-index: -1;
     }
-    /* Estilo do vídeo sem cortes */
+    /* Estilo do vídeo sem cortes (exibindo todo o vídeo com barras se necessário) */
     .video-bg-container video {
       width: 100%;
       height: 100%;
-      object-fit: contain;  /* Exibe o vídeo completo */
-      background-color: #000; /* Fundo para eventuais barras */
+      object-fit: contain;
+      background-color: #000;
+    }
+    /* Ajuste para dispositivos móveis */
+    @media (max-width: 768px) {
+      .video-bg-container {
+        width: 50vw;  /* 50% da largura da viewport */
+        height: 50vh; /* 50% da altura da viewport */
+      }
     }
   </style>
 </head>
@@ -48,8 +55,9 @@
   </div>
   
   <script>
+    // Ao terminar, o vídeo congela no último frame
     const bgVideo = document.getElementById('bgVideo');
-    bgVideo.addEventListener('ended', function() {
+    bgVideo.addEventListener('ended', () => {
       bgVideo.currentTime = bgVideo.duration - 0.1;
       bgVideo.pause();
     });
