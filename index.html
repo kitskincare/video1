@@ -19,18 +19,18 @@
       align-items: center;
       font-family: sans-serif;
     }
-    /* Container do vídeo com tamanho reduzido para 22.5% da viewport */
+    /* Container do vídeo agora com 27,5% da viewport */
     .video-bg-container {
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 30vw;   /* 30% da largura da viewport */
-      height: 30vh;  /* 30% da altura da viewport */
+      width: 27.5vw;   /* 27,5% da largura da viewport */
+      height: 27.5vh;  /* 27,5% da altura da viewport */
       transform: translate(-50%, -50%);
       overflow: hidden;
       z-index: -1;
     }
-    /* O vídeo ocupa todo o container mantendo o aspecto */
+    /* O vídeo ocupa todo o container e mantém o aspecto */
     .video-bg-container video {
       width: 100%;
       height: 100%;
@@ -39,7 +39,7 @@
   </style>
 </head>
 <body>
-  <!-- Container com o vídeo reduzido e centralizado -->
+  <!-- Container com o vídeo aumentado e centralizado -->
   <div class="video-bg-container">
     <video id="bgVideo" autoplay muted>
       <source src="video-fundo.mp4" type="video/mp4">
