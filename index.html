@@ -14,34 +14,27 @@
     html, body {
       height: 100%;
       background-color: #111;
-      font-family: sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
+      font-family: sans-serif;
     }
-    /* Container do vídeo com tamanho reduzido (25% da viewport) */
+    /* Container do vídeo com tamanho reduzido para 22.5% da viewport */
     .video-bg-container {
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 25vw;   /* 25% da largura da viewport */
-      height: 25vh;  /* 25% da altura da viewport */
+      width: 22.5vw;   /* 22.5% da largura da viewport */
+      height: 22.5vh;  /* 22.5% da altura da viewport */
       transform: translate(-50%, -50%);
       overflow: hidden;
       z-index: -1;
     }
-    /* O vídeo ocupa todo o container e mantém o aspecto */
+    /* O vídeo ocupa todo o container mantendo o aspecto */
     .video-bg-container video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-    /* Conteúdo da página (opcional) */
-    .content {
-      position: relative;
-      z-index: 1;
-      color: #fff;
-      text-align: center;
     }
   </style>
 </head>
@@ -54,16 +47,8 @@
     </video>
   </div>
   
-  <!-- Conteúdo da página -->
-  <div class="content">
-    <h1>Bem-vindo ao Meu Site</h1>
-    <p>Conteúdo sobreposto ao vídeo de fundo.</p>
-  </div>
-  
   <script>
-    // Quando o vídeo terminar, o evento "ended" é disparado.
-    // Nesse momento, definimos o currentTime para o final (menos um pequeno ajuste)
-    // e pausamos o vídeo para congelar o último frame.
+    // Quando o vídeo terminar, congela no último frame
     const bgVideo = document.getElementById('bgVideo');
     bgVideo.addEventListener('ended', function() {
       bgVideo.currentTime = bgVideo.duration - 0.1;
@@ -72,4 +57,5 @@
   </script>
 </body>
 </html>
+
 
